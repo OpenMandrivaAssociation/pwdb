@@ -9,6 +9,7 @@ License:	GPL
 Group:		System/Libraries
 Source:		%{name}-%{version}.tar.bz2
 Patch0:		%{name}-0.62-includes.patch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 The pwdb package contains libpwdb, the password database library.
