@@ -90,9 +90,13 @@ install conf/pwdb.conf %{buildroot}%{_sysconfdir}/pwdb.conf
 
 ln -sf lib%{name}.so.%{version} %{buildroot}/%{_lib}/lib%{name}.so.%{major}
 
+%if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
+%endif
 
+%if %mdkversion < 200900
 %postun -n %{libname} -p /sbin/ldconfig
+%endif
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
