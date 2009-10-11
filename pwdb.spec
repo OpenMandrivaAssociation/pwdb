@@ -4,7 +4,7 @@
 Summary:	The password database library
 Name:		pwdb
 Version:	0.62
-Release:	%mkrel 7
+Release:	%mkrel 8
 License:	GPL
 Group:		System/Libraries
 Source:		%{name}-%{version}.tar.bz2
@@ -29,7 +29,7 @@ Configuration package for the libpwdb, the password database library.
 
 %package -n	%{libname}
 Summary:	The password database library
-Group:		System/Libraries
+Group:		System/Base
 Requires:	%{name}-conf
 Provides:	pwdb = %{version}-%{release}
 Obsoletes:	pwdb
