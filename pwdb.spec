@@ -1,15 +1,16 @@
 %define	major 0
-%define libname	%mklibname pwdb %{major}
+%define libname		%mklibname pwdb %{major}
+%define develname	%mklibname pwdb -d
+%define staticname	%mklibname pwdb -s -d
 
 Summary:	The password database library
 Name:		pwdb
 Version:	0.62
-Release:	%mkrel 12
+Release:	12
 License:	GPL
 Group:		System/Libraries
 Source:		%{name}-%{version}.tar.bz2
 Patch0:		%{name}-0.62-includes.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 The pwdb package contains libpwdb, the password database library.
@@ -43,23 +44,25 @@ access to and management of security tools like /etc/passwd,
 /etc/shadow and network authentication systems including NIS and
 Radius.
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	The pwdb include files and link library
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	pwdb-devel = %{version}-%{release}
 Conflicts:	pwdb-devel <= 0.61
+Obsoletes:	%{libname}-devel
 
-%description -n	%{libname}-devel
+%description -n	%{develname}
 The development header / link library for pwdb.
 
-%package -n	%{libname}-static-devel
+%package -n	%{staticname}
 Summary:	The pwdb static library
 Group:		Development/C
-Requires:	%{libname}-devel = %{version}-%{release}
+Requires:	%{develname} = %{version}-%{release}
 Provides:	pwdb-static-devel = %{version}-%{release}
+Obsoletes:	%{libname}-static-devel
 
-%description -n	%{libname}-static-devel
+%description -n	%{staticname}
 The static development library for pwdb.
 
 %prep
@@ -90,14 +93,6 @@ install conf/pwdb.conf %{buildroot}%{_sysconfdir}/pwdb.conf
 
 ln -sf lib%{name}.so.%{version} %{buildroot}/%{_lib}/lib%{name}.so.%{major}
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
@@ -110,13 +105,12 @@ ln -sf lib%{name}.so.%{version} %{buildroot}/%{_lib}/lib%{name}.so.%{major}
 %defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libpwdb.so.%{major}*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(644,root,root,755)
 /%{_lib}/libpwdb.so
 %{_includedir}/pwdb
 
-%files -n %{libname}-static-devel
+%files -n %{staticname}
 %defattr(644,root,root,755)
 /%{_lib}/libpwdb.a
-
 
