@@ -51,7 +51,7 @@ Requires:	%{libname} = %{version}-%{release}
 Provides:	pwdb-devel = %{version}-%{release}
 Obsoletes:	%{mklibname pwdb 0}-devel <= 0.62-14
 Provides:	pwdb-static-devel = %{version}-%{release}
-Obsoltes:	%{mklibname pwdb 0}-static-devel <= 0.62-14
+Obsoletes:	%{mklibname pwdb 0}-static-devel <= 0.62-14
 Provides:	%{mklibname pwdb 0}-static-devel = %{version}-%{release}
 Conflicts:	pwdb-devel <= 0.61
 
