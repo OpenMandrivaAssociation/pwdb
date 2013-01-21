@@ -1,15 +1,17 @@
 %define	major 0
 %define libname	%mklibname pwdb %{major}
+%define develnaname %mklibname pwdb -d
+%define staticdevelnaname %mklibname pwdb -d -s
 
 Summary:	The password database library
 Name:		pwdb
 Version:	0.62
-Release:	%mkrel 14
+Release:	15
 License:	GPL
 Group:		System/Libraries
 Source:		%{name}-%{version}.tar.bz2
 Patch0:		%{name}-0.62-includes.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
+BuildRequires:	tirpc-devel
 
 %description
 The pwdb package contains libpwdb, the password database library.
@@ -20,11 +22,11 @@ access to and management of security tools like /etc/passwd,
 /etc/shadow and network authentication systems including NIS and
 Radius.
 
-%package	conf
+%package conf
 Summary:	The password database library config
 Group:		System/Base
 
-%description	conf
+%description conf
 Configuration package for the libpwdb, the password database library.
 
 %package -n	%{libname}
@@ -32,7 +34,7 @@ Summary:	The password database library
 Group:		System/Libraries
 Requires:	%{name}-conf
 Provides:	pwdb = %{version}-%{release}
-Obsoletes:	pwdb
+Obsoletes:	pwdb < %{version}-%{release}
 
 %description -n	%{libname}
 The pwdb package contains libpwdb, the password database library.
@@ -43,23 +45,25 @@ access to and management of security tools like /etc/passwd,
 /etc/shadow and network authentication systems including NIS and
 Radius.
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	The pwdb include files and link library
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	pwdb-devel = %{version}-%{release}
+Obsoletes:	%{mklibname pwdb 0}-devel <= 0.62-14
 Conflicts:	pwdb-devel <= 0.61
 
-%description -n	%{libname}-devel
+%description -n	%{develname}
 The development header / link library for pwdb.
 
-%package -n	%{libname}-static-devel
+%package -n	%{staticdevelname}
 Summary:	The pwdb static library
 Group:		Development/C
 Requires:	%{libname}-devel = %{version}-%{release}
 Provides:	pwdb-static-devel = %{version}-%{release}
+Obsoletes:	%{mklibname pwdb 0}-static-devel <= 0.62-14
 
-%description -n	%{libname}-static-devel
+%description -n	%{staticdevelname}
 The static development library for pwdb.
 
 %prep
@@ -77,7 +81,6 @@ chmod -R g-s .
 %make
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 mkdir -p %{buildroot}/{%{_lib},%{_sysconfdir},%{_includedir}/pwdb}
 
@@ -90,17 +93,6 @@ install conf/pwdb.conf %{buildroot}%{_sysconfdir}/pwdb.conf
 
 ln -sf lib%{name}.so.%{version} %{buildroot}/%{_lib}/lib%{name}.so.%{major}
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
 %files conf
 %defattr(644,root,root,755)
 %doc Copyright doc/pwdb.txt doc/html
@@ -110,12 +102,12 @@ ln -sf lib%{name}.so.%{version} %{buildroot}/%{_lib}/lib%{name}.so.%{major}
 %defattr(644,root,root,755)
 %attr(755,root,root) /%{_lib}/libpwdb.so.%{major}*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(644,root,root,755)
 /%{_lib}/libpwdb.so
 %{_includedir}/pwdb
 
-%files -n %{libname}-static-devel
+%files -n %{staticdevelname}
 %defattr(644,root,root,755)
 /%{_lib}/libpwdb.a
 
