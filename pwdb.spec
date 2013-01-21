@@ -1,7 +1,6 @@
 %define	major 0
 %define libname	%mklibname pwdb %{major}
 %define develnaname %mklibname pwdb -d
-%define staticdevelnaname %mklibname pwdb -d -s
 
 Summary:	The password database library
 Name:		pwdb
@@ -51,20 +50,13 @@ Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	pwdb-devel = %{version}-%{release}
 Obsoletes:	%{mklibname pwdb 0}-devel <= 0.62-14
+Provides:	pwdb-static-devel = %{version}-%{release}
+Obsoltes:	%{mklibname pwdb 0}-static-devel <= 0.62-14
+Provides:	%{mklibname pwdb 0}-static-devel = %{version}-%{release}
 Conflicts:	pwdb-devel <= 0.61
 
 %description -n	%{develname}
 The development header / link library for pwdb.
-
-%package -n	%{staticdevelname}
-Summary:	The pwdb static library
-Group:		Development/C
-Requires:	%{develname} = %{version}-%{release}
-Provides:	pwdb-static-devel = %{version}-%{release}
-Obsoletes:	%{mklibname pwdb 0}-static-devel <= 0.62-14
-
-%description -n	%{staticdevelname}
-The static development library for pwdb.
 
 %prep
 
@@ -106,9 +98,6 @@ ln -sf lib%{name}.so.%{version} %{buildroot}/%{_lib}/lib%{name}.so.%{major}
 %defattr(644,root,root,755)
 /%{_lib}/libpwdb.so
 %{_includedir}/pwdb
-
-%files -n %{staticdevelname}
-%defattr(644,root,root,755)
 /%{_lib}/libpwdb.a
 
 
