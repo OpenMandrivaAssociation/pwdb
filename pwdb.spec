@@ -59,7 +59,7 @@ The development header / link library for pwdb.
 %package -n	%{staticdevelname}
 Summary:	The pwdb static library
 Group:		Development/C
-Requires:	%{libname}-devel = %{version}-%{release}
+Requires:	%{develname} = %{version}-%{release}
 Provides:	pwdb-static-devel = %{version}-%{release}
 Obsoletes:	%{mklibname pwdb 0}-static-devel <= 0.62-14
 
