@@ -5,7 +5,7 @@
 Summary:	The password database library
 Name:		pwdb
 Version:	0.62
-Release:	15
+Release:	16
 License:	GPL
 Group:		System/Libraries
 Source:		%{name}-%{version}.tar.bz2
@@ -49,7 +49,7 @@ Summary:	The pwdb include files and link library
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	pwdb-devel = %{version}-%{release}
-Obsoletes:	%{mklibname pwdb 0}-devel <= 0.62-14
+Obsoletes:	%{mklibname pwdb 0}-devel < 0.62-15
 Provides:	pwdb-static-devel = %{version}-%{release}
 Obsoletes:	%{mklibname pwdb 0}-static-devel <= 0.62-14
 Provides:	%{mklibname pwdb 0}-static-devel = %{version}-%{release}
