@@ -5,7 +5,7 @@
 Summary:	The password database library
 Name:		pwdb
 Version:	0.62
-Release:	19
+Release:	20
 License:	GPL
 Group:		System/Libraries
 Source:		%{name}-%{version}.tar.bz2
