@@ -1,0 +1,12 @@
+diff -Naur pwdb-0.62/libpwdb/Makefile pwdb-0.62.tpg/libpwdb/Makefile
+--- pwdb-0.62/libpwdb/Makefile	1999-04-10 09:31:20.000000000 +0000
++++ pwdb-0.62.tpg/libpwdb/Makefile	2015-10-24 02:13:31.749562232 +0000
+@@ -50,7 +50,7 @@
+ 
+ 
+ $(LIBDYNAME): $(LIBOBJ)
+-	$(LD) -soname $(LIBSONAME) -x -shared -o $(LIBFILENAME) $(LIBOBJ) -lcrypt -lnsl -lc
++	$(LD) -soname $(LIBSONAME) -x -shared $(LDFLAGS) -o $(LIBFILENAME) $(LIBOBJ) -lcrypt -lnsl -lc
+ 	@ln -sf $(LIBFILENAME) $@
+ 
+ $(LIBSTATIC): $(LIBOBJ)
