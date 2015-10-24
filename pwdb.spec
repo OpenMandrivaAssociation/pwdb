@@ -1,3 +1,4 @@
+%define debug_package %{nil}
 %define	major 0
 %define libname	%mklibname pwdb %{major}
 %define devname %mklibname pwdb -d
@@ -5,7 +6,7 @@
 Summary:	The password database library
 Name:		pwdb
 Version:	0.62
-Release:	29
+Release:	30
 License:	GPLv2
 Group:		System/Libraries
 Source0:	%{name}-%{version}.tar.bz2
@@ -64,7 +65,8 @@ ln -s defs/redhat.defs default.defs
 chmod -R g-s .
 
 %build
-%make
+%setup_compile_flags
+%make CC=%{__cc}
 
 %install
 mkdir -p %{buildroot}/{%{_lib},%{_sysconfdir},%{_includedir}/pwdb}
