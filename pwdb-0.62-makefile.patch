@@ -6,7 +6,7 @@ diff -Naur pwdb-0.62/default.defs pwdb-0.62.tpg/default.defs
  LD=ld
  LDCONFIG=/sbin/ldconfig
 -AR=ar -cr
-+AR=ar cr
++AR=ar rv
  RANLIB=ranlib
  PPFIX=
  PREFIX=$(PPFIX)/

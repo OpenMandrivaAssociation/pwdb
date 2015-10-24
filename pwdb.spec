@@ -66,6 +66,7 @@ ln -s defs/redhat.defs default.defs
 chmod -R g-s .
 
 %build
+%define _disable_lto 1
 %setup_compile_flags
 %make CC=%{__cc}
 
