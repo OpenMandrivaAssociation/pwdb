@@ -1,6 +1,18 @@
+diff -Naur pwdb-0.62/default.defs pwdb-0.62.tpg/default.defs
+--- pwdb-0.62/default.defs	1998-10-06 22:46:23.000000000 +0000
++++ pwdb-0.62.tpg/default.defs	2015-10-24 02:45:28.453811667 +0000
+@@ -12,7 +12,7 @@
+ LD_D=gcc -shared -Xlinker -x
+ LD=ld
+ LDCONFIG=/sbin/ldconfig
+-AR=ar -cr
++AR=ar cr
+ RANLIB=ranlib
+ PPFIX=
+ PREFIX=$(PPFIX)/
 diff -Naur pwdb-0.62/libpwdb/Makefile pwdb-0.62.tpg/libpwdb/Makefile
 --- pwdb-0.62/libpwdb/Makefile	1999-04-10 09:31:20.000000000 +0000
-+++ pwdb-0.62.tpg/libpwdb/Makefile	2015-10-24 02:13:31.749562232 +0000
++++ pwdb-0.62.tpg/libpwdb/Makefile	2015-10-24 02:45:15.291459067 +0000
 @@ -50,7 +50,7 @@
  
  
