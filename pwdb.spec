@@ -2,6 +2,7 @@
 %define	major 0
 %define libname	%mklibname pwdb %{major}
 %define devname %mklibname pwdb -d
+%define _disable_rebuild_configure 1
 
 Summary:	The password database library
 Name:		pwdb
