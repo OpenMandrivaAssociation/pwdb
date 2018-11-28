@@ -14,6 +14,7 @@ Source0:	%{name}-%{version}.tar.bz2
 Patch0:		%{name}-0.62-includes.patch
 Patch1:		pwdb-0.62-makefile.patch
 BuildRequires:	pkgconfig(libtirpc)
+BuildRequires:	pkgconfig(libnsl)
 
 %description
 The pwdb package contains libpwdb, the password database library.
@@ -75,6 +76,7 @@ chmod -R g-s .
 mkdir -p %{buildroot}/{%{_lib},%{_sysconfdir},%{_includedir}/pwdb}
 
 make	INCLUDED=%{buildroot}%{_includedir}/pwdb \
+	CC=%{__cc} \
 	LIBDIR=%{buildroot}/%{_lib} \
 	LDCONFIG=":" \
 	install
