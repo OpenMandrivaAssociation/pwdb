@@ -59,7 +59,7 @@ The development header / link library for pwdb.
 %prep
 
 %setup -q
-%apply_patches
+%autopatch -p1
 
 rm default.defs
 ln -s defs/redhat.defs default.defs
