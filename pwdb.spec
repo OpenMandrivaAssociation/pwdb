@@ -13,6 +13,7 @@ Group:		System/Libraries
 Source0:	%{name}-%{version}.tar.bz2
 Patch0:		%{name}-0.62-includes.patch
 Patch1:		pwdb-0.62-makefile.patch
+BuildRequires:	make
 BuildRequires:	pkgconfig(libtirpc)
 BuildRequires:	pkgconfig(libnsl)
 
